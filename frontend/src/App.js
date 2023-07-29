@@ -1,4 +1,3 @@
-import './App.css';
 import { createBrowserRouter, RouterProvider } from './components/Router';
 import Home from './Pages/Home/Home';
 function App() {
