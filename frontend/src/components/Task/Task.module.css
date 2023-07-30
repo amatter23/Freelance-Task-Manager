@@ -1,0 +1,136 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: fit-content;
+  padding: calc(var(--global-padding) / 2);
+  gap: var(--global-gap);
+  background-color: var(--background-color1);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: fit-content;
+  padding-bottom: calc(var(--global-padding) / 2);
+  border-bottom: solid 0.5px var(--text-color2);
+  gap: var(--global-gap);
+}
+.header > div {
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--global-gap) / 2);
+  border-left: solid 1px var(--color2);
+  padding-left: 0.5rem;
+  color: var(--color2);
+}
+.header > div:first-child {
+  color: var(--color1);
+  border-left: solid 1px var(--color1);
+}
+.header > div:last-child {
+  color: var(--color3);
+  border-left: solid 1px var(--color3);
+}
+.header h6 {
+  color: var(--text-color1);
+}
+.discription {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: fit-content;
+}
+
+.lable {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--global-gap);
+  color: var(--color1);
+  padding: calc(var(--global-padding) / 6) calc(var(--global-padding) / 4);
+  background-color: var(--color1-1);
+  border-radius: 0.3rem;
+}
+.lable h6 {
+  color: var(--text-color2);
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: fit-content;
+  gap: var(--global-gap);
+}
+.items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  gap: var(--global-gap);
+  flex-wrap: wrap;
+}
+.item h6 {
+  color: var(--text-color1);
+}
+.itemName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  gap: var(--global-gap);
+  color: var(--text-color1);
+  border-right: solid 1px var(--text-color1);
+  padding-right: calc(var(--global-padding) / 2);
+}
+.sellPrice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  gap: var(--global-gap);
+  color: var(--color1);
+  border-right: solid 1px var(--color1);
+  padding-right: calc(var(--global-padding) / 2);
+}
+.buyPrice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  gap: var(--global-gap);
+  color: var(--color2);
+  border-right: solid 1px var(--color2);
+  padding-right: calc(var(--global-padding) / 2);
+}
+.profit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  gap: var(--global-gap);
+  color: var(--color3);
+  padding-right: calc(var(--global-padding) / 2);
+}
