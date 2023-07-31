@@ -7,7 +7,8 @@
   height: fit-content;
   padding: calc(var(--global-padding) / 2);
   gap: var(--global-gap);
-  background-color: var(--background-color1);
+  background-color: white;
+  border-radius: calc(var(--global-border-radius) / 2);
 }
 
 .header {

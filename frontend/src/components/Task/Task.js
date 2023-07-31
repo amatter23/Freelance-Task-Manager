@@ -11,20 +11,21 @@ import {
   faArrowRight,
   faWallet,
 } from '@fortawesome/free-solid-svg-icons';
-const Task = () => {
+const Task = props => {
   return (
     <div className={classes.container}>
       <div className={classes.header}>
         <div className={classes.customer}>
           <FontAwesomeIcon icon={faUser} />
-          <h6>Ahmed matter</h6>
+          <h6> {props.task.customer.name}</h6>
         </div>
         <div className={classes.address}>
-          <FontAwesomeIcon icon={faLocationDot} /> <h6>64 rashad fkljsdaf </h6>
+          <FontAwesomeIcon icon={faLocationDot} />
+          <h6>{props.task.addresse.title} </h6>
         </div>
         <div className={classes.date}>
           <FontAwesomeIcon icon={faCalendar} />
-          <h6>26/8/2001</h6>
+          <h6>{props.task.date}</h6>
         </div>
       </div>
       <div className={classes.discription}>
@@ -33,37 +34,36 @@ const Task = () => {
           <h6>Discription</h6>
         </div>
         <div className={classes.text}>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            voluptatum, quibusdam, quia, quos voluptates voluptate quod
-            voluptatibus quas doloribus quidem voluptatem. Quisquam voluptatum,
-            quibusdam, quia, quos voluptates voluptate quod voluptatibus quas
-            doloribus quidem voluptatem.
-          </p>
+          <p>{props.task.discription}</p>
         </div>
       </div>
       <div className={classes.item}>
         <div className={classes.lable}>
           <FontAwesomeIcon icon={faSitemap} /> <h6>Items</h6>
         </div>
-        <div className={classes.items}>
-          <div className={classes.itemName}>
-            <FontAwesomeIcon icon={faFileSignature} />
-            <h6>رسيفر</h6>
-          </div>
-          <div className={classes.sellPrice}>
-            <FontAwesomeIcon icon={faArrowRight} />
-            <h6>600</h6>
-          </div>
-          <div className={classes.buyPrice}>
-            <FontAwesomeIcon icon={faArrowRight} />
-            <h6>500</h6>
-          </div>
-          <div className={classes.profit}>
-            <FontAwesomeIcon icon={faWallet} />
-            <h6>100</h6>
-          </div>
-        </div>
+        {props.task.item.map(item => {
+          return (
+            <div key={item.id} className={classes.items}>
+              <div className={classes.itemName}>
+                <FontAwesomeIcon icon={faFileSignature} />
+                <h6>{item.title}</h6>
+              </div>
+              <div className={classes.sellPrice}>
+                <FontAwesomeIcon icon={faArrowRight} />
+                <h6>{item.sell_price}</h6>
+              </div>
+              <div className={classes.buyPrice}>
+                <FontAwesomeIcon icon={faArrowRight} />
+                <h6>{item.buy_price}</h6>
+              </div>
+              <div className={classes.profit}>
+                <FontAwesomeIcon icon={faWallet} />
+                <h6>{item.profit}</h6>
+              </div>
+            </div>
+          );
+        })}
+
         <div className={classes.items}>
           <div className={classes.itemName}>
             <FontAwesomeIcon icon={faFileSignature} />
@@ -71,15 +71,15 @@ const Task = () => {
           </div>
           <div className={classes.sellPrice}>
             <FontAwesomeIcon icon={faArrowRight} />
-            <h6>600</h6>
+            <h6>{props.task.total_sell_price}</h6>
           </div>
           <div className={classes.buyPrice}>
             <FontAwesomeIcon icon={faArrowRight} />
-            <h6>500</h6>
+            <h6>{props.task.total_buy_price}</h6>
           </div>
           <div className={classes.profit}>
             <FontAwesomeIcon icon={faWallet} />
-            <h6>100</h6>
+            <h6>{props.task.total_profit}</h6>
           </div>
         </div>
       </div>
