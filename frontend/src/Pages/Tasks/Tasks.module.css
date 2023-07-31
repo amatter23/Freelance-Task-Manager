@@ -1,0 +1,130 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  height: fit-content;
+  padding: var(--global-padding) 10%;
+  background-color: var(--background-color);
+  gap: var(--global-gap);
+  min-height: 100vh;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  gap: var(--global-gap);
+  flex-wrap: wrap;
+}
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--global-gap);
+  color: var(--color1);
+}
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--global-gap);
+  color: var(--color1);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.customer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--global-gap);
+  padding: calc(var(--global-padding) / 6) calc(var(--global-padding) / 2);
+  background-color: white;
+  border-radius: var(--global-border-radius);
+}
+.customer label {
+  color: var(--color3);
+  padding: calc(var(--global-padding) / 6) calc(var(--global-padding) / 2);
+  background-color: var(--color3-1);
+  border-radius: var(--global-border-radius);
+}
+.customer input {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  color: var(--color1);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-bottom: solid 1px var(--color3);
+  border-radius: 0px;
+}
+
+
+.date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--global-gap);
+  padding: calc(var(--global-padding) / 6) calc(var(--global-padding) / 2);
+  background-color: white;
+  border-radius: var(--global-border-radius);
+}
+.date .tpggle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--global-gap);
+}
+.button {
+  border: none;
+  padding: calc(var(--global-padding) / 6) calc(var(--global-padding) / 2);
+  font-size: calc(var(--global-font-size) / 1.2);
+  border-radius: var(--global-border-radius);
+  transition: 300ms ease-in-out;
+  background-color: var(--color1-1);
+  color: var(--color1);
+}
+.active {
+  background-color: var(--color3);
+  color: var(--color3-1);
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--global-gap);
+  width: 100%;
+  margin: 0 auto;
+}
+.oneDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--global-gap);
+  flex-wrap: wrap;
+}
+.oneDate label {
+  color: var(--color2);
+  padding: calc(var(--global-padding) / 6) calc(var(--global-padding) / 2);
+  background-color: var(--color2-1);
+  border-radius: var(--global-border-radius);
+}
+
+.twoDates {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--global-gap);
+  flex-wrap: wrap;
+}
+
+.twoDates label {
+  color: var(--color2);
+  padding: calc(var(--global-padding) / 6) calc(var(--global-padding) / 2);
+  background-color: var(--color2-1);
+  border-radius: var(--global-border-radius);
+}
+
