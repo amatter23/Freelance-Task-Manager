@@ -7,7 +7,9 @@ body {
 * {
   box-sizing: border-box;
 }
-
+input {
+  all: unset;
+}
 /* Define CSS variables for margin, padding, and font sizes */
 :root {
   --global-margin: 1rem;
@@ -15,7 +17,7 @@ body {
   --global-font-size: 16px;
   --global-gap: 1rem;
   --global-border-radius: 0.5rem;
-  --background-color: #ced3ce;
+  --background-color: #ced3ce7c;
   --background-color1: #fbf8f3;
   --text-color1: #1d1d1d;
   --text-color2: #62605f;
