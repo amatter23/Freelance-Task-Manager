@@ -1,0 +1,89 @@
+.btn {
+  background-color: var(--text-color1);
+  border: none;
+  padding: calc(var(--global-padding) / 4) calc(var(--global-padding));
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  color: var(--background-color1);
+  border: solid 1px var(--text-color1);
+}
+.btn:hover {
+  background-color: var(--background-color1);
+  color: var(--text-color1);
+}
+.btn1 {
+  background-color: var(--background-color1);
+  border: none;
+  padding: calc(var(--global-padding) / 4) calc(var(--global-padding));
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  color: var(--text-color1);
+  border: solid 1px var(--text-color1);
+}
+.btn1:hover {
+  background-color: var(--text-color1);
+  color: var(--background-color1);
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  padding: var(--global-padding) 0;
+  gap: var(--global-gap);
+}
+
+.done {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.modal input {
+  width: 30%;
+  border-radius: var(--global-border-radius);
+  padding: calc(var(--global-padding) / 4) calc(var(--global-padding));
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.addresses {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--global-gap);
+  width: 100%;
+}
+
+.address {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--global-gap);
+  width: 100%;
+  border-bottom: soild 1px var(--text-color1);
+}
+
+.address div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--global-gap);
+  width: 50%;
+}
+.address div input {
+  width: 100%;
+  border-radius: var(--global-border-radius);
+  padding: calc(var(--global-padding) / 4) calc(var(--global-padding));
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
