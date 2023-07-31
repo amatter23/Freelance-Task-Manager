@@ -14,7 +14,7 @@ class Addresses(models.Model):
 class Task (models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.PROTECT , related_name="task")
     addresse = models.ForeignKey(Addresses, on_delete=models.PROTECT, related_name="task")
-    description = models.TextField()
+    discription = models.TextField()
     file = models.FileField(upload_to='media',null=True )
     date = models.DateField()
 

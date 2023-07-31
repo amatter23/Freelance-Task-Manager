@@ -8,13 +8,11 @@ class CustomerViewSet(ModelViewSet):
     serializer_class = CustomersSerializer
 
 class TaskViewSet(ModelViewSet):
-    queryset = Task.objects.select_related('customer', 'addresse').all()
+    queryset = Task.objects.select_related('customer', 'addresse').prefetch_related('item')
     def get_serializer_class(self):
-        if self.request.method=='POST':
+        if self.request.method == 'POST':
             return TaskPostSerializer
         return TaskGetSerializer
-    
-
 
 class AddressesViewSet (ModelViewSet):
     queryset = Addresses.objects.select_related('customer')

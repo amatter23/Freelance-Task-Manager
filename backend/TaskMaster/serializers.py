@@ -4,7 +4,7 @@ from django.db import transaction
 class AddressesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Addresses
-        fields = ['title', 'address']
+        fields = ['title', 'address',"id"]
 
 
 class CustomersSerializer(serializers.ModelSerializer):
@@ -45,9 +45,21 @@ class TaskGetSerializer (serializers.ModelSerializer):
     customer = customerTaskSerializer()
     addresse = AddressesSerializer()
     item = ItemSerializer(many=True)
+    total_sell_price = serializers.SerializerMethodField()
+    total_buy_price = serializers.SerializerMethodField()
+    total_profit = serializers.SerializerMethodField()
     class Meta: 
         model = Task
-        fields = ['description', 'file', 'date','customer', 'addresse' ,'item']
+        fields = ['discription', 'file', 'date','customer', 'addresse' ,'item', 'total_sell_price', 'total_buy_price', 'total_profit',]
+
+    def get_total_sell_price(self, task):
+        return sum(item.sell_price for item in task.item.all())
+
+    def get_total_buy_price(self, task):
+        return sum(item.buy_price for item in task.item.all())
+
+    def get_total_profit(self, task):
+        return sum(item.profit for item in task.item.all())
 
 
 
@@ -56,7 +68,7 @@ class TaskPostSerializer (serializers.ModelSerializer):
     item = ItemSerializer(many=True)
     class Meta: 
         model = Task
-        fields = ['description', 'file', 'date','customer', 'addresse' ,'item']
+        fields = ['discription', 'file', 'date','customer', 'addresse' ,'item']
 
     def create(self, validated_data):
         with transaction.atomic():
