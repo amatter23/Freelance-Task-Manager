@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for tarcker on 2023-07-31T21:43:33+03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "tarcker"
+primary_region = "cdg"
+console_command = "/code/manage.py shell"
+
+[env]
+  PORT = "8000"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[statics]]
+  guest_path = "/code/static"
+  url_prefix = "/static/"
