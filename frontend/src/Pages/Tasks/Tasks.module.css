@@ -127,4 +127,18 @@
   background-color: var(--color2-1);
   border-radius: var(--global-border-radius);
 }
-
+.empty{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--global-gap);
+  margin-top: 25%;
+}
+.empty h6{
+  color: var(--color1);
+  font-size: calc(var(--global-font-size) * 1.2);
+  font-weight: 600;
+}
