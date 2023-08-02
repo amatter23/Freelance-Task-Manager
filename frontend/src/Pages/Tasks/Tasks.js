@@ -22,13 +22,13 @@ const Tasks = props => {
   // query client
   const queryClient = useQueryClient();
   // get tasks from api
-  const { data, isError, isLoading } = useQuery({
+  const tasks = useQuery({
     queryKey: ['tasks'],
     queryFn: () => axios(api_url + 'Tasks/').then(res => res.data),
   });
 
   // get customers from api
-  const { data: customers } = useQuery({
+  const customers = useQuery({
     queryKey: ['customers'],
     queryFn: () => axios(api_url + 'Customers/').then(res => res.data),
   });
@@ -84,14 +84,13 @@ const Tasks = props => {
   const addCustomer = data => {
     addCustomerMutation.mutate(data);
   };
-  // todo add loading to customer fun also
-  if (isLoading)
+  if (tasks.isLoading || customers.isLoading)
     return (
       <div className={classes.empty}>
         <FontAwesomeIcon icon={faSpinner} spin={true} size='2xl' />
       </div>
     );
-  if (isError)
+  if (tasks.isError || customers.isError)
     return (
       <div className={classes.empty}>
         <FontAwesomeIcon color='red' size='2xl' icon={faCircleXmark} />{' '}
@@ -99,7 +98,7 @@ const Tasks = props => {
       </div>
     );
 
-  const filteredTasks = data.filter(task => {
+  const filteredTasks = tasks.data.filter(task => {
     if (!customer && !date && !from && !to) {
       // Return true for all tasks when both customer and date are null
       return true;
@@ -219,7 +218,7 @@ const Tasks = props => {
           </div>
         </div>
         <div className={classes.addTask}></div>
-        <AddTask customers={customers} addTask={addTask} />
+        <AddTask customers={customers.data} addTask={addTask} />
         <AddCustomer addCustomer={addCustomer} />
       </div>
       <div className={classes.tasks}>
