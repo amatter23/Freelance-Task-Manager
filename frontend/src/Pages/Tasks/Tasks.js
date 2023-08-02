@@ -6,7 +6,11 @@ import classes from './Tasks.module.css';
 import Task from '../../components/Task/Task';
 // import fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faListCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faListCheck,
+  faCircleXmark,
+  faSpinner,
+} from '@fortawesome/free-solid-svg-icons';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api_url } from '../../utils/api';
 import axios from 'axios';
@@ -81,8 +85,19 @@ const Tasks = props => {
     addCustomerMutation.mutate(data);
   };
   // todo add loading to customer fun also
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
+  if (isLoading)
+    return (
+      <div className={classes.empty}>
+        <FontAwesomeIcon icon={faSpinner} spin={true} size='2xl' />
+      </div>
+    );
+  if (isError)
+    return (
+      <div className={classes.empty}>
+        <FontAwesomeIcon color='red' size='2xl' icon={faCircleXmark} />{' '}
+        <h4>Something went wrong please try again</h4>
+      </div>
+    );
 
   const filteredTasks = data.filter(task => {
     if (!customer && !date && !from && !to) {
