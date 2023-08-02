@@ -6,7 +6,11 @@ import classes from './Tasks.module.css';
 import Task from '../../components/Task/Task';
 // import fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faListCheck } from '@fortawesome/free-solid-svg-icons';
+import {
+  faListCheck,
+  faCircleXmark,
+  faSpinner,
+} from '@fortawesome/free-solid-svg-icons';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api_url } from '../../utils/api';
 import axios from 'axios';
@@ -18,13 +22,13 @@ const Tasks = props => {
   // query client
   const queryClient = useQueryClient();
   // get tasks from api
-  const { data, isError, isLoading } = useQuery({
+  const tasks = useQuery({
     queryKey: ['tasks'],
     queryFn: () => axios(api_url + 'Tasks/').then(res => res.data),
   });
 
   // get customers from api
-  const { data: customers } = useQuery({
+  const customers = useQuery({
     queryKey: ['customers'],
     queryFn: () => axios(api_url + 'Customers/').then(res => res.data),
   });
@@ -80,10 +84,55 @@ const Tasks = props => {
   const addCustomer = data => {
     addCustomerMutation.mutate(data);
   };
-  // todo add empty return when no tasks
-  // todo add loading to customer fun also
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
+  // filter tasks
+  const filteredTasks = tasks.data.filter(task => {
+    if (!customer && !date && !from && !to) {
+      // Return true for all tasks when both customer and date are null
+      return true;
+    } else if (customer && !date && !from && !to) {
+      // Return true for tasks matching the customer when date is null
+      return task.customer.name.includes(customer);
+    } else if (!customer && date && !from && !to) {
+      // Return true for tasks matching the date when customer is null
+      return task.date === date;
+    } else if (!customer && !date && from && to) {
+      // Return true for tasks within the specified date range when customer is null
+      const taskDate = new Date(task.date);
+      const fromDate = new Date(from);
+      const toDate = new Date(to);
+      return taskDate >= fromDate && taskDate <= toDate;
+    } else if (customer && date && !from && !to) {
+      // Return true for tasks matching both customer and date when both are not null
+      return task.customer.name.includes(customer) && task.date === date;
+    } else if (customer && !date && from && to) {
+      const taskDate = new Date(task.date);
+      const fromDate = new Date(from);
+      const toDate = new Date(to);
+      return (
+        task.customer.name.includes(customer) &&
+        taskDate >= fromDate &&
+        taskDate <= toDate
+      );
+    }
+  });
+  // check if tasks are empty
+  const areTasksEmpty = filteredTasks.length === 0;
+
+// loading and error states
+  if (tasks.isLoading || customers.isLoading)
+    return (
+      <div className={classes.empty}>
+        <FontAwesomeIcon icon={faSpinner} spin={true} size='2xl' />
+      </div>
+    );
+  if (tasks.isError || customers.isError)
+    return (
+      <div className={classes.empty}>
+        <FontAwesomeIcon color='red' size='2xl' icon={faCircleXmark} />{' '}
+        <h4>Something went wrong please try again</h4>
+      </div>
+    );
+
   return (
     <div className={classes.container}>
       <ToastContainer position='top-right' />
@@ -171,46 +220,18 @@ const Tasks = props => {
           </div>
         </div>
         <div className={classes.addTask}></div>
-        <AddTask customers={customers} addTask={addTask} />
+        <AddTask customers={customers.data} addTask={addTask} />
         <AddCustomer addCustomer={addCustomer} />
       </div>
       <div className={classes.tasks}>
-        {data
-          .filter(task => {
-            if (!customer && !date && !from && !to) {
-              // Return true for all tasks when both customer and date are null
-              return true;
-            } else if (customer && !date && !from && !to) {
-              // Return true for tasks matching the customer when date is null
-              return task.customer.name.includes(customer);
-            } else if (!customer && date && !from && !to) {
-              // Return true for tasks matching the date when customer is null
-              return task.date === date;
-            } else if (!customer && !date && from && to) {
-              // Return true for tasks within the specified date range when customer is null
-              const taskDate = new Date(task.date);
-              const fromDate = new Date(from);
-              const toDate = new Date(to);
-              return taskDate >= fromDate && taskDate <= toDate;
-            } else if (customer && date && !from && !to) {
-              // Return true for tasks matching both customer and date when both are not null
-              return (
-                task.customer.name.includes(customer) && task.date === date
-              );
-            } else if (customer && !date && from && to) {
-              const taskDate = new Date(task.date);
-              const fromDate = new Date(from);
-              const toDate = new Date(to);
-              return (
-                task.customer.name.includes(customer) &&
-                taskDate >= fromDate &&
-                taskDate <= toDate
-              );
-            }
-          })
-          .map(task => (
-            <Task key={task.id} task={task} />
-          ))}
+        {areTasksEmpty ? (
+          <div className={classes.empty}>
+            <FontAwesomeIcon color='red' size='2xl' icon={faCircleXmark} />{' '}
+            <h6>No tasks available</h6>
+          </div>
+        ) : (
+          filteredTasks.map(task => <Task key={task.id} task={task} />)
+        )}
       </div>
     </div>
   );
