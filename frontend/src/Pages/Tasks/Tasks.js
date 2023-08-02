@@ -84,7 +84,23 @@ const Tasks = props => {
   const addCustomer = data => {
     addCustomerMutation.mutate(data);
   };
-  // filter tasks
+  
+// loading and error states
+  if (tasks.isLoading || customers.isLoading)
+    return (
+      <div className={classes.empty}>
+        <FontAwesomeIcon icon={faSpinner} spin={true} size='2xl' />
+      </div>
+    );
+  if (tasks.isError || customers.isError)
+    return (
+      <div className={classes.empty}>
+        <FontAwesomeIcon color='red' size='2xl' icon={faCircleXmark} />{' '}
+        <h4>Something went wrong please try again</h4>
+      </div>
+    );
+
+    // filter tasks
   const filteredTasks = tasks.data.filter(task => {
     if (!customer && !date && !from && !to) {
       // Return true for all tasks when both customer and date are null
@@ -118,20 +134,6 @@ const Tasks = props => {
   // check if tasks are empty
   const areTasksEmpty = filteredTasks.length === 0;
 
-// loading and error states
-  if (tasks.isLoading || customers.isLoading)
-    return (
-      <div className={classes.empty}>
-        <FontAwesomeIcon icon={faSpinner} spin={true} size='2xl' />
-      </div>
-    );
-  if (tasks.isError || customers.isError)
-    return (
-      <div className={classes.empty}>
-        <FontAwesomeIcon color='red' size='2xl' icon={faCircleXmark} />{' '}
-        <h4>Something went wrong please try again</h4>
-      </div>
-    );
 
   return (
     <div className={classes.container}>
