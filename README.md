@@ -18,4 +18,4 @@ The Freelancer Job Tracker is a comprehensive platform designed to assist freela
 Your feedback and contributions can enhance the Freelancer Job Tracker. Please consider opening issues or submitting pull requests to improve the platform.
 
 ## Contact 📬
-For any queries, suggestions, or collaborative efforts, feel free to reach out to [Your Email Here](mailto:matterahmed36@gmail.com) or connect on [LinkedIn](https://www.linkedin.com/in/ahmedmatter23/).
+For any queries, suggestions, or collaborative efforts, feel free to reach out to [Email](mailto:matterahmed36@gmail.com) or connect on [LinkedIn](https://www.linkedin.com/in/ahmedmatter23/).
