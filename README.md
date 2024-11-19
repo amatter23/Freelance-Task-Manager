@@ -1,4 +1,4 @@
-# Freelancer Job Tracker ✍️
+# Freelance Task Manager ✍️
 
 ## Overview 🌐
 The Freelancer Job Tracker is a comprehensive platform designed to assist freelancers in managing, tracking, and analyzing their jobs and tasks. With an integrated frontend developed using React.js and a backend built with Django, the system offers a seamless experience for freelancers to stay on top of their game.
